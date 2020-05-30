@@ -1,3 +1,14 @@
+<!--
+ * @Author: Jiang wenke
+ * @LastEditors: Jiang wenke
+ * @email: wenkejiang@yeah.net
+ * @github: https://github.com/wenkejiang/
+ * @Date: 2020-05-30 15:11:10
+ * @LastEditTime: 2020-05-30 15:19:58
+ * @motto: Still water run deep
+ * @Description: Modify here please
+ * @FilePath: /guard-web/src/layout/components/Sidebar/Logo.vue
+-->
 <template>
   <div class="sidebar-logo-container" :class="{'collapse':collapse}">
     <transition name="sidebarLogoFade">
@@ -24,7 +35,7 @@ export default {
   },
   data() {
     return {
-      title: 'Vue Admin Template',
+      title: '质量平台',
       logo: 'https://wpimg.wallstcn.com/69a1c46c-eb1c-4b46-8bd4-e9e686ef5251.png'
     }
   }
