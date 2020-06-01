@@ -1,9 +1,20 @@
-<template>
-  <div class="login-container">
-    <el-form ref="loginForm" :model="loginForm" :rules="loginRules" class="login-form" auto-complete="on" label-position="left">
+<!--
+ * @Author: Jiang wenke
+ * @LastEditors: Jiang wenke
+ * @email: wenkejiang@yeah.net
+ * @github: https://github.com/wenkejiang/
+ * @Date: 2020-05-30 19:14:59
+ * @LastEditTime: 2020-05-30 19:54:40
+ * @motto: Still water run deep
+ * @Description: Modify here please
+ * @FilePath: /guard-web/src/views/register/index.vue
+-->
 
+<template>
+  <div class="register-container">
+    <el-form ref="loginForm" :model="loginForm" :rules="loginRules" class="login-form" auto-complete="on" label-position="left">
       <div class="title-container">
-        <h3 class="title">质量平台登录</h3>
+        <h3 class="title">注册平台登录</h3>
       </div>
 
       <el-form-item prop="username">
@@ -40,8 +51,8 @@
           <svg-icon :icon-class="passwordType === 'password' ? 'eye' : 'eye-open'" />
         </span>
       </el-form-item>
-      <el-button :loading="loading" type="success" style="width:48%;margin-bottom:30px;" @click.native.prevent="handleLogin">登录</el-button>
-      <el-button :loading="loading" type="primary" style="width:48%;margin-bottom:30px;" @click="handleRegister">注册</el-button>
+
+      <el-button :loading="loading" type="primary" style="width:100%;margin-bottom:30px;" @click.native.prevent="handleLogin">Login</el-button>
     </el-form>
   </div>
 </template>
@@ -54,22 +65,22 @@ export default {
   data() {
     const validateUsername = (rule, value, callback) => {
       if (!validUsername(value)) {
-        callback(new Error('请输入你的用户名'))
+        callback(new Error('Please enter the correct user name'))
       } else {
         callback()
       }
     }
     const validatePassword = (rule, value, callback) => {
       if (value.length < 6) {
-        callback(new Error('请输入你的密码'))
+        callback(new Error('The password can not be less than 6 digits'))
       } else {
         callback()
       }
     }
     return {
       loginForm: {
-        username: '',
-        password: ''
+        username: 'admin',
+        password: '111111'
       },
       loginRules: {
         username: [{ required: true, trigger: 'blur', validator: validateUsername }],
@@ -114,13 +125,9 @@ export default {
           return false
         }
       })
-    },
-    handleRegister() {
-      this.$router.push({ path: '/register' })
     }
   }
 }
-
 </script>
 
 <style lang="scss">

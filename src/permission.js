@@ -1,3 +1,14 @@
+/*
+ * @Author: Jiang wenke
+ * @LastEditors: Jiang wenke
+ * @email: wenkejiang@yeah.net
+ * @github: https://github.com/wenkejiang/
+ * @Date: 2020-05-30 15:11:10
+ * @LastEditTime: 2020-06-01 10:49:59
+ * @motto: Still water run deep
+ * @Description: Modify here please
+ * @FilePath: /guard-web/src/permission.js
+ */
 import router from './router'
 import store from './store'
 import { Message } from 'element-ui'
@@ -8,7 +19,7 @@ import getPageTitle from '@/utils/get-page-title'
 
 NProgress.configure({ showSpinner: false }) // NProgress Configuration
 
-const whiteList = ['/login'] // no redirect whitelist
+const whiteList = ['/login', '/register'] // no redirect whitelist
 
 router.beforeEach(async(to, from, next) => {
   // start progress bar

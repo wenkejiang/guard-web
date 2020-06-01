@@ -4,7 +4,7 @@
  * @email: wenkejiang@yeah.net
  * @github: https://github.com/wenkejiang/
  * @Date: 2020-05-30 15:11:10
- * @LastEditTime: 2020-05-30 15:28:53
+ * @LastEditTime: 2020-06-01 10:41:48
  * @motto: Still water run deep
  * @Description: Modify here please
  * @FilePath: /guard-web/src/layout/components/Sidebar/Link.vue
@@ -12,7 +12,7 @@
 
 <template>
   <!-- eslint-disable vue/require-component-is -->
-  <component :is="linkProps(to)">
+  <component v-bind="linkProps(to)">
     <slot />
   </component>
 </template>

@@ -1,3 +1,14 @@
+/*
+ * @Author: Jiang wenke
+ * @LastEditors: Jiang wenke
+ * @email: wenkejiang@yeah.net
+ * @github: https://github.com/wenkejiang/
+ * @Date: 2020-05-30 15:11:10
+ * @LastEditTime: 2020-06-01 11:09:00
+ * @motto: Still water run deep
+ * @Description: Modify here please
+ * @FilePath: /guard-web/mock/user.js
+ */
 
 const tokens = {
   admin: {
@@ -26,7 +37,7 @@ const users = {
 export default [
   // user login
   {
-    url: '/vue-admin-template/user/login',
+    url: '/guard-web/user/login',
     type: 'post',
     response: config => {
       const { username } = config.body
