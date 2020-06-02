@@ -1,3 +1,14 @@
+<!--
+ * @Author: Jiang wenke
+ * @LastEditors: Jiang wenke
+ * @email: wenkejiang@yeah.net
+ * @github: https://github.com/wenkejiang/
+ * @Date: 2020-05-30 15:11:10
+ * @LastEditTime: 2020-06-02 09:42:05
+ * @motto: Still water run deep
+ * @Description: Modify here please
+ * @FilePath: /guard-web/src/views/login/index.vue
+-->
 <template>
   <div class="login-container">
     <el-form ref="loginForm" :model="loginForm" :rules="loginRules" class="login-form" auto-complete="on" label-position="left">
@@ -47,13 +58,14 @@
 </template>
 
 <script>
-import { validUsername } from '@/utils/validate'
+// import { validUsername } from '@/utils/validate'
 
 export default {
   name: 'Login',
   data() {
     const validateUsername = (rule, value, callback) => {
-      if (!validUsername(value)) {
+      // eslint-disable-next-line eqeqeq
+      if (value.length == 0) {
         callback(new Error('请输入你的用户名'))
       } else {
         callback()

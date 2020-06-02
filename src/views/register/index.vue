@@ -1,20 +1,9 @@
-<!--
- * @Author: Jiang wenke
- * @LastEditors: Jiang wenke
- * @email: wenkejiang@yeah.net
- * @github: https://github.com/wenkejiang/
- * @Date: 2020-05-30 19:14:59
- * @LastEditTime: 2020-05-30 19:54:40
- * @motto: Still water run deep
- * @Description: Modify here please
- * @FilePath: /guard-web/src/views/register/index.vue
--->
-
 <template>
-  <div class="register-container">
-    <el-form ref="loginForm" :model="loginForm" :rules="loginRules" class="login-form" auto-complete="on" label-position="left">
+  <div class="login-container">
+    <el-form ref="registerForm" :model="registerForm" :rules="registerRules" class="login-form" auto-complete="on" label-position="left">
+
       <div class="title-container">
-        <h3 class="title">注册平台登录</h3>
+        <h3 class="title">质量平台注册</h3>
       </div>
 
       <el-form-item prop="username">
@@ -23,7 +12,7 @@
         </span>
         <el-input
           ref="username"
-          v-model="loginForm.username"
+          v-model="registerForm.username"
           placeholder="Username"
           name="username"
           type="text"
@@ -31,7 +20,20 @@
           auto-complete="on"
         />
       </el-form-item>
-
+      <el-form-item prop="email">
+        <span class="svg-container">
+          <svg-icon icon-class="email" />
+        </span>
+        <el-input
+          ref="email"
+          v-model="registerForm.email"
+          placeholder="Email"
+          name="email"
+          type="email"
+          tabindex="2"
+          auto-complete="on"
+        />
+      </el-form-item>
       <el-form-item prop="password">
         <span class="svg-container">
           <svg-icon icon-class="password" />
@@ -39,52 +41,96 @@
         <el-input
           :key="passwordType"
           ref="password"
-          v-model="loginForm.password"
+          v-model="registerForm.password"
           :type="passwordType"
           placeholder="Password"
           name="password"
-          tabindex="2"
+          tabindex="3"
           auto-complete="on"
-          @keyup.enter.native="handleLogin"
         />
+
         <span class="show-pwd" @click="showPwd">
           <svg-icon :icon-class="passwordType === 'password' ? 'eye' : 'eye-open'" />
         </span>
       </el-form-item>
 
-      <el-button :loading="loading" type="primary" style="width:100%;margin-bottom:30px;" @click.native.prevent="handleLogin">Login</el-button>
+      <el-form-item prop="password1">
+        <span class="svg-container">
+          <svg-icon icon-class="password" />
+        </span>
+        <el-input
+          :key="passwordType"
+          ref="password"
+          v-model="registerForm.password1"
+          :type="passwordType"
+          placeholder="Password again"
+          name="password2"
+          tabindex="4"
+          auto-complete="on"
+        />
+
+        <span class="show-pwd" @click="showPwd">
+          <svg-icon :icon-class="passwordType === 'password' ? 'eye' : 'eye-open'" />
+        </span>
+      </el-form-item>
+      <el-button type="success" style="width:48%;margin-bottom:30px;" @click.native.prevent="handleLogin">已有账号,返回登录页面</el-button>
+      <el-button :loading="loading" type="primary" style="width:48%;margin-bottom:30px;" @click="handleRegister">注册</el-button>
     </el-form>
   </div>
 </template>
 
 <script>
-import { validUsername } from '@/utils/validate'
 
 export default {
-  name: 'Login',
+  name: 'Register',
   data() {
     const validateUsername = (rule, value, callback) => {
-      if (!validUsername(value)) {
-        callback(new Error('Please enter the correct user name'))
+      if (!value) {
+        callback(new Error('请输入你的用户名'))
       } else {
+        callback()
+      }
+    }
+    const validateEmail = (rule, value, callback) => {
+      if (value === '') {
+        callback(new Error('请正确填写邮箱'))
+      } else {
+        if (value !== '') {
+          var reg = /^[A-Za-z0-9\u4e00-\u9fa5]+@[a-zA-Z0-9_-]+(\.[a-zA-Z0-9_-]+)+$/
+          if (!reg.test(value)) {
+            callback(new Error('请输入有效的邮箱'))
+          }
+        }
         callback()
       }
     }
     const validatePassword = (rule, value, callback) => {
       if (value.length < 6) {
-        callback(new Error('The password can not be less than 6 digits'))
+        callback(new Error('请输入你的密码'))
+      } else {
+        callback()
+      }
+    }
+
+    const validatePassword1 = (rule, value, callback) => {
+      if (this.registerForm.password !== value) {
+        callback(new Error('两次输入的密码不一致'))
       } else {
         callback()
       }
     }
     return {
-      loginForm: {
-        username: 'admin',
-        password: '111111'
+      registerForm: {
+        username: '',
+        email: '',
+        password: '',
+        password1: ''
       },
-      loginRules: {
+      registerRules: {
         username: [{ required: true, trigger: 'blur', validator: validateUsername }],
-        password: [{ required: true, trigger: 'blur', validator: validatePassword }]
+        email: [{ required: true, trigger: 'blur', validator: validateEmail }],
+        password: [{ required: true, trigger: 'blur', validator: validatePassword }],
+        password1: [{ required: true, trigger: 'blur', validator: validatePassword1 }]
       },
       loading: false,
       passwordType: 'password',
@@ -110,11 +156,11 @@ export default {
         this.$refs.password.focus()
       })
     },
-    handleLogin() {
-      this.$refs.loginForm.validate(valid => {
+    handleRegister() {
+      this.$refs.registerForm.validate(valid => {
         if (valid) {
           this.loading = true
-          this.$store.dispatch('user/login', this.loginForm).then(() => {
+          this.$store.dispatch('user/register', this.registerForm).then(() => {
             this.$router.push({ path: this.redirect || '/' })
             this.loading = false
           }).catch(() => {
@@ -125,9 +171,13 @@ export default {
           return false
         }
       })
+    },
+    handleLogin() {
+      this.$router.push({ path: '/login' })
     }
   }
 }
+
 </script>
 
 <style lang="scss">

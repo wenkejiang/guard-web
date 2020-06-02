@@ -1,10 +1,10 @@
 /*
  * @Author: Jiang wenke
- * @LastEditors: Jiang wenke
+ * @LastEditors: Please set LastEditors
  * @email: wenkejiang@yeah.net
  * @github: https://github.com/wenkejiang/
  * @Date: 2020-05-30 15:11:10
- * @LastEditTime: 2020-06-01 11:15:17
+ * @LastEditTime: 2020-06-02 22:45:53
  * @motto: Still water run deep
  * @Description: Modify here please
  * @FilePath: /guard-web/src/api/user.js
@@ -19,9 +19,16 @@ export function login(data) {
   })
 }
 
+export function register(data) {
+  return request({
+    url: '/register/',
+    method: 'post',
+    data
+  })
+}
 export function getInfo(token) {
   return request({
-    url: '/vue-admin-template/user/info',
+    url: '/getInfo/',
     method: 'get',
     params: { token }
   })
