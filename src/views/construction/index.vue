@@ -1,6 +1,10 @@
 <template>
   <div class="dashboard-container">
-    <div class="dashboard-text">欢迎！！登录用户: {{ name }}</div>
+    <el-container>
+      <el-main>
+        <img src="@/assets/doing/doing.png">
+      </el-main>
+    </el-container>
   </div>
 </template>
 
@@ -27,4 +31,10 @@ export default {
     line-height: 46px;
   }
 }
+.el-main {
+    background-color: #ffff;
+    color: #333;
+    text-align: center;
+    line-height: 160px;
+  }
 </style>

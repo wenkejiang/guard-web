@@ -1,10 +1,10 @@
 <!--
  * @Author: Jiang wenke
- * @LastEditors: Jiang wenke
+ * @LastEditors: Please set LastEditors
  * @email: wenkejiang@yeah.net
  * @github: https://github.com/wenkejiang/
  * @Date: 2020-05-30 15:11:10
- * @LastEditTime: 2020-05-30 15:19:58
+ * @LastEditTime: 2020-06-03 13:00:51
  * @motto: Still water run deep
  * @Description: Modify here please
  * @FilePath: /guard-web/src/layout/components/Sidebar/Logo.vue

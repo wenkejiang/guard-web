@@ -1,10 +1,10 @@
 <!--
  * @Author: Jiang wenke
- * @LastEditors: Jiang wenke
+ * @LastEditors: Please set LastEditors
  * @email: wenkejiang@yeah.net
  * @github: https://github.com/wenkejiang/
  * @Date: 2020-05-30 15:11:10
- * @LastEditTime: 2020-06-02 09:42:05
+ * @LastEditTime: 2020-06-03 09:50:37
  * @motto: Still water run deep
  * @Description: Modify here please
  * @FilePath: /guard-web/src/views/login/index.vue
@@ -52,7 +52,7 @@
         </span>
       </el-form-item>
       <el-button :loading="loading" type="success" style="width:48%;margin-bottom:30px;" @click.native.prevent="handleLogin">登录</el-button>
-      <el-button :loading="loading" type="primary" style="width:48%;margin-bottom:30px;" @click="handleRegister">注册</el-button>
+      <el-button type="primary" style="width:48%;margin-bottom:30px;" @click="handleRegister">注册</el-button>
     </el-form>
   </div>
 </template>
