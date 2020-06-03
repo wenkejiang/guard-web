@@ -57,19 +57,19 @@ export const constantRoutes = [
       path: 'dashboard',
       name: 'Dashboard',
       component: () => import('@/views/dashboard/index'),
-      meta: { title: '首页', icon: 'dashboard' }
+      meta: { title: '首页', icon: '模型' }
     }]
   },
 
   {
-    path: '/api',
+    path: '/dashboard',
     component: Layout,
     children: [
       {
         path: 'index',
         name: 'Form',
         component: () => import('@/views/construction/index'),
-        meta: { title: 'API测试平台', icon: 'form' }
+        meta: { title: 'API测试平台', icon: 'API' }
       }
     ]
   },
@@ -79,12 +79,12 @@ export const constantRoutes = [
     component: Layout,
     redirect: '/example/table',
     name: 'Example',
-    meta: { title: '监控平台', icon: 'example' },
+    meta: { title: '监控平台', icon: '监控' },
     children: [
       {
         path: 'table',
         name: 'Table',
-        component: () => import('@/views/table/index'),
+        component: () => import('@/views/construction/index'),
         meta: { title: 'Table', icon: 'table' }
       },
       {
@@ -97,39 +97,39 @@ export const constantRoutes = [
   },
 
   {
-    path: '/api',
+    path: '/pertest',
     component: Layout,
     children: [
       {
         path: 'pertest',
         name: 'performance',
         component: () => import('@/views/construction/index'),
-        meta: { title: '性能平台', icon: 'form' }
+        meta: { title: '性能平台', icon: '性能测试' }
       }
     ]
   },
 
   {
-    path: '/api',
+    path: '/manager',
     component: Layout,
     children: [
       {
         path: 'manager',
         name: 'manager',
         component: () => import('@/views/construction/index'),
-        meta: { title: '测试管理', icon: 'example' }
+        meta: { title: '测试管理', icon: '测试管理' }
       }
     ]
   },
   {
-    path: '/api',
+    path: '/report',
     component: Layout,
     children: [
       {
         path: 'report',
         name: 'report',
         component: () => import('@/views/construction/index'),
-        meta: { title: '报表管理', icon: 'example' }
+        meta: { title: '报表管理', icon: '数据看板' }
       }
     ]
   },
@@ -139,13 +139,13 @@ export const constantRoutes = [
     component: Layout,
     redirect: '/api/user',
     name: 'system',
-    meta: { title: '系统管理', icon: 'example' },
+    meta: { title: '系统管理', icon: '系统管理' },
     children: [
       {
         path: 'user',
         name: 'user',
-        component: () => import('@/views/table/index'),
-        meta: { title: '用户管理', icon: 'table' }
+        component: () => import('@/views/user/index'),
+        meta: { title: '用户管理', icon: '用户管理' }
       },
       {
         path: 'email',
@@ -157,14 +157,14 @@ export const constantRoutes = [
   },
 
   {
-    path: '/api',
+    path: '/log',
     component: Layout,
     children: [
       {
         path: 'log',
         name: 'LOG',
         component: () => import('@/views/construction/index'),
-        meta: { title: '迭代日志', icon: 'form' }
+        meta: { title: '迭代日志', icon: '迭代日志' }
       }
     ]
   },

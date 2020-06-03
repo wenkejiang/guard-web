@@ -4,7 +4,7 @@
  * @email: wenkejiang@yeah.net
  * @github: https://github.com/wenkejiang/
  * @Date: 2020-05-30 15:11:10
- * @LastEditTime: 2020-06-02 23:48:43
+ * @LastEditTime: 2020-06-03 13:26:00
  * @motto: Still water run deep
  * @Description: Modify here please
  * @FilePath: /guard-web/src/api/user.js
@@ -31,5 +31,13 @@ export function getInfo(token) {
     url: '/getInfo/',
     method: 'get',
     params: { token }
+  })
+}
+
+export function getList(params) {
+  return request({
+    url: '/getUserList/',
+    method: 'get',
+    params
   })
 }

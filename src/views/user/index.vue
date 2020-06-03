@@ -8,22 +8,22 @@
       fit
       highlight-current-row
     >
-      <el-table-column align="center" label="ID" width="95">
+      <el-table-column align="center" label="ID">
         <template slot-scope="scope">
-          {{ scope.$index }}
+          {{ scope.$index + 1}}
         </template>
       </el-table-column>
-      <el-table-column label="Title">
+      <el-table-column label="username" align="center">
         <template slot-scope="scope">
-          {{ scope.row.title }}
+          {{ scope.row.username }}
         </template>
       </el-table-column>
-      <el-table-column label="Author" width="110" align="center">
+      <el-table-column label="Author" align="center">
         <template slot-scope="scope">
-          <span>{{ scope.row.author }}</span>
+          <span>{{ scope.row.email }}</span>
         </template>
       </el-table-column>
-      <el-table-column label="Pageviews" width="110" align="center">
+      <el-table-column label="Pageviews" align="center">
         <template slot-scope="scope">
           {{ scope.row.pageviews }}
         </template>
@@ -44,7 +44,7 @@
 </template>
 
 <script>
-import { getList } from '@/api/table'
+import { getList } from '@/api/user'
 
 export default {
   filters: {
@@ -70,7 +70,7 @@ export default {
     fetchData() {
       this.listLoading = true
       getList().then(response => {
-        this.list = response.data.items
+        this.list = response.data
         this.listLoading = false
       })
     }
