@@ -10,7 +10,7 @@
     >
       <el-table-column align="center" label="ID">
         <template slot-scope="scope">
-          {{ scope.$index + 1}}
+          {{ scope.$index + 1 }}
         </template>
       </el-table-column>
       <el-table-column label="username" align="center">
