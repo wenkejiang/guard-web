@@ -13,8 +13,22 @@
         <el-input
           ref="username"
           v-model="registerForm.username"
-          placeholder="Username"
+          placeholder="账号"
           name="username"
+          type="text"
+          tabindex="1"
+          auto-complete="on"
+        />
+      </el-form-item>
+      <el-form-item prop="name">
+        <span class="svg-container">
+          <svg-icon icon-class="user" />
+        </span>
+        <el-input
+          ref="name"
+          v-model="registerForm.name"
+          placeholder="姓名"
+          name="name"
           type="text"
           tabindex="1"
           auto-complete="on"
@@ -43,7 +57,7 @@
           ref="password"
           v-model="registerForm.password"
           :type="passwordType"
-          placeholder="Password"
+          placeholder="密码"
           name="password"
           tabindex="3"
           auto-complete="on"
@@ -63,7 +77,7 @@
           ref="password"
           v-model="registerForm.password1"
           :type="passwordType"
-          placeholder="Password again"
+          placeholder="确认密码"
           name="password2"
           tabindex="4"
           auto-complete="on"
@@ -87,6 +101,13 @@ export default {
     const validateUsername = (rule, value, callback) => {
       if (!value) {
         callback(new Error('请输入你的用户名'))
+      } else {
+        callback()
+      }
+    }
+    const validatename = (rule, value, callback) => {
+      if (!value) {
+        callback(new Error('请输入你的姓名'))
       } else {
         callback()
       }
@@ -122,12 +143,14 @@ export default {
     return {
       registerForm: {
         username: '',
+        name: '',
         email: '',
         password: '',
         password1: ''
       },
       registerRules: {
         username: [{ required: true, trigger: 'blur', validator: validateUsername }],
+        name: [{ required: true, trigger: 'blur', validator: validatename }],
         email: [{ required: true, trigger: 'blur', validator: validateEmail }],
         password: [{ required: true, trigger: 'blur', validator: validatePassword }],
         password1: [{ required: true, trigger: 'blur', validator: validatePassword1 }]

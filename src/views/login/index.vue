@@ -4,7 +4,7 @@
  * @email: wenkejiang@yeah.net
  * @github: https://github.com/wenkejiang/
  * @Date: 2020-05-30 15:11:10
- * @LastEditTime: 2020-06-03 09:50:37
+ * @LastEditTime: 2020-06-04 20:43:06
  * @motto: Still water run deep
  * @Description: Modify here please
  * @FilePath: /guard-web/src/views/login/index.vue
@@ -115,8 +115,8 @@ export default {
       this.$refs.loginForm.validate(valid => {
         if (valid) {
           this.loading = true
-          this.$store.dispatch('user/login', this.loginForm).then(() => {
-            this.$router.push({ path: this.redirect || '/' })
+          this.$store.dispatch('user/login', this.loginForm).then((response) => {
+            this.$router.push({ path: '/' })
             this.loading = false
           }).catch(() => {
             this.loading = false
