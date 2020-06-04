@@ -4,7 +4,7 @@
  * @email: wenkejiang@yeah.net
  * @github: https://github.com/wenkejiang/
  * @Date: 2020-05-30 15:11:10
- * @LastEditTime: 2020-06-04 20:16:58
+ * @LastEditTime: 2020-06-04 23:52:57
  * @motto: Still water run deep
  * @Description: Modify here please
  * @FilePath: /guard-web/src/utils/request.js
@@ -12,7 +12,7 @@
 import axios from 'axios'
 import { MessageBox, Message } from 'element-ui'
 // import { Message } from 'element-ui'
-
+import { formatContent } from '@/utils/validate'
 import store from '@/store'
 // import { getToken } from '@/utils/auth'
 
@@ -61,8 +61,10 @@ service.interceptors.response.use(
 
     // if the custom code is not 20000, it is judged as an error.
     if (res.code !== 0) {
+      var msg = formatContent(res.message)
+      console.log(msg)
       Message({
-        message: res.data || 'Error',
+        message: msg || 'Error',
         type: 'error',
         duration: 3 * 1000
       })
