@@ -52,17 +52,17 @@ export const constantRoutes = [
   {
     path: '/',
     component: Layout,
-    redirect: '/dashboard',
+    redirect: '/guard',
     children: [{
-      path: 'dashboard',
-      name: 'Dashboard',
+      path: 'guard',
+      name: 'Guard',
       component: () => import('@/views/dashboard/index'),
       meta: { title: '首页', icon: '模型' }
     }]
   },
 
   {
-    path: '/dashboard',
+    path: '/api',
     component: Layout,
     children: [
       {
@@ -75,23 +75,17 @@ export const constantRoutes = [
   },
 
   {
-    path: '/example',
+    path: '/control',
     component: Layout,
-    redirect: '/example/table',
-    name: 'Example',
+    // redirect: '/monitor/table',
+    name: '监控平台',
     meta: { title: '监控平台', icon: '监控' },
     children: [
       {
-        path: 'table',
-        name: 'Table',
-        component: () => import('@/views/construction/index'),
-        meta: { title: 'Table', icon: 'table' }
-      },
-      {
-        path: 'tree',
-        name: 'Tree',
-        component: () => import('@/views/tree/index'),
-        meta: { title: 'Tree', icon: 'tree' }
+        path: 'monitor',
+        name: '业务接口监控',
+        component: () => import('@/views/monitor/index'),
+        meta: { title: '业务接口监控', icon: '监控' }
       }
     ]
   },
@@ -135,7 +129,7 @@ export const constantRoutes = [
   },
 
   {
-    path: '/api',
+    path: '/system',
     component: Layout,
     redirect: '/api/user',
     name: 'system',

@@ -1,10 +1,10 @@
 /*
  * @Author: Jiang wenke
- * @LastEditors: Jiang wenke
+ * @LastEditors: Please set LastEditors
  * @email: wenkejiang@yeah.net
  * @github: https://github.com/wenkejiang/
  * @Date: 2020-05-30 11:09:27
- * @LastEditTime: 2020-05-30 14:53:36
+ * @LastEditTime: 2020-06-09 17:09:41
  * @motto: Still water run deep
  * @Description: Modify here please
  * @FilePath: /vue-admin-template/src/main.js
@@ -22,7 +22,7 @@ import '@/styles/index.scss' // global css
 import App from './App'
 import store from './store'
 import router from './router'
-
+// 全局引入
 import '@/icons' // icon
 import '@/permission' // permission control
 
@@ -45,7 +45,6 @@ if (process.env.NODE_ENV === 'production') {
 Vue.use(ElementUI)
 
 Vue.config.productionTip = false
-
 new Vue({
   el: '#app',
   router,

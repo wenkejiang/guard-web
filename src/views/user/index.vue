@@ -41,15 +41,47 @@
           <span>{{ row.date_joined }}</span>
         </template>
       </el-table-column>
-      <!-- <el-table-column label="操作" align="center" class-name="small-padding fixed-width">
+      <el-table-column label="操作" align="center" class-name="small-padding fixed-width">
         <template slot-scope="{row}">
-          <el-button v-if="row.status!='deleted'" size="mini" type="danger" @click="handleDelete(row.id)">
-            删除
+          <el-button type="primary" size="mini" @click="handleUpdate(row)">
+            修改密码
           </el-button>
         </template>
-      </el-table-column> -->
+      </el-table-column>
     </el-table>
     <pagination v-show="total>0" :total="total" :page.sync="listQuery.page" @pagination="getList" />
+
+    <el-dialog :title="textMap[dialogStatus]" :visible.sync="dialogFormVisible">
+      <el-form ref="dataForm" :rules="rules" :model="temp" label-position="left" label-width="70px" style="width: 400px; margin-left:50px;">
+        <el-form-item label="旧密码" prop="oldpassword">
+          <el-input v-model="temp.oldpassword" />
+        </el-form-item>
+        <el-form-item label="新密码" prop="newpassword">
+          <el-input v-model="temp.newpassword" />
+        </el-form-item>
+        <el-form-item label="确认密码" prop="renewpassword">
+          <el-input v-model="temp.renewpassword" />
+        </el-form-item>
+      </el-form>
+      <div slot="footer" class="dialog-footer">
+        <el-button @click="dialogFormVisible = false">
+          Cancel
+        </el-button>
+        <el-button type="primary" @click="updateData()">
+          Confirm
+        </el-button>
+      </div>
+    </el-dialog>
+
+    <el-dialog :visible.sync="dialogPvVisible" title="Reading statistics">
+      <el-table :data="pvData" border fit highlight-current-row style="width: 100%">
+        <el-table-column prop="key" label="Channel" />
+        <el-table-column prop="pv" label="Pv" />
+      </el-table>
+      <span slot="footer" class="dialog-footer">
+        <el-button type="primary" @click="dialogPvVisible = false">Confirm</el-button>
+      </span>
+    </el-dialog>
   </div>
 </template>
 
@@ -68,7 +100,27 @@ export default {
       listQuery: {
         page: 1,
         username: undefined
-      }
+      },
+      temp: {
+        id: '',
+        oldpassword: '',
+        newpassword: '',
+        renewpassword: ''
+      },
+      dialogFormVisible: false,
+      dialogStatus: '',
+      textMap: {
+        update: 'Edit',
+        create: 'Create'
+      },
+      dialogPvVisible: false,
+      pvData: [],
+      rules: {
+        type: [{ required: true, message: 'type is required', trigger: 'change' }],
+        timestamp: [{ type: 'date', required: true, message: 'timestamp is required', trigger: 'change' }],
+        title: [{ required: true, message: 'title is required', trigger: 'blur' }]
+      },
+      downloadLoading: false
     }
   },
   created() {
@@ -90,6 +142,15 @@ export default {
     handleFilter() {
       this.listQuery.page = 1
       this.getList()
+    },
+    handleUpdate(row) {
+      this.temp = Object.assign({}, row) // copy obj
+      this.temp.timestamp = new Date(this.temp.timestamp)
+      this.dialogStatus = 'update'
+      this.dialogFormVisible = true
+      this.$nextTick(() => {
+        this.$refs['dataForm'].clearValidate()
+      })
     },
     handleDelete(index) {
       console.log(index)

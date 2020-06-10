@@ -12,7 +12,7 @@
 import { mapGetters } from 'vuex'
 
 export default {
-  name: 'Dashboard',
+  name: 'Guard',
   computed: {
     ...mapGetters([
       'name'
