@@ -117,14 +117,14 @@
       >
         <template slot-scope="{row}">
           <el-tooltip class="item" effect="dark" content="执行任务" placement="top-start">
-            <el-button type="success" icon="el-icon-s-promotion" circle @click="handleUpdate(row)" />
+            <el-button type="success" icon="el-icon-s-promotion" circle @click="handleStartJob(row)" />
           </el-tooltip>
           <el-tooltip class="item" effect="dark" content="停止任务" placement="top-start">
             <el-button
               type="warning"
               icon="el-icon-switch-button"
               circle
-              @click="handleUpdate(row)"
+              @click="handleStoptJob(row.id)"
             />
           </el-tooltip>
           <el-tooltip class="item" effect="dark" content="更新任务" placement="top-start">
@@ -200,6 +200,15 @@
         </el-form-item>
         <el-form-item label="监控负责人" prop="warning">
           <el-input v-model="temp.warning" placeholder="请输入监控负责人..." />
+          <el-popover
+            placement="top-start"
+            width="200"
+            title="说明"
+            trigger="hover"
+          >
+            <span>监控负责人可以企业微信收到监控报警,例如配置为: jiangwenke,zhangwei</span>
+            <i slot="reference" class="el-icon-info" />
+          </el-popover>
         </el-form-item>
       </el-form>
       <div slot="footer" class="dialog-footer">
@@ -266,7 +275,7 @@
 </template>
 
 <script>
-import { gitInfo, getUrl, createJob, getJobList, deleteJob, updateJob, getProjectInfo } from '@/api/monitor'
+import { gitInfo, getUrl, createJob, getJobList, deleteJob, updateJob, getProjectInfo, startScript, stopScript } from '@/api/monitor'
 import Pagination from '@/components/Pagination' // secondary package based on el-paginatio
 import { mapGetters } from 'vuex'
 
@@ -391,12 +400,31 @@ export default {
       })
       console.log(this.projectInfo)
     },
+    handleStartJob(row) {
+      startScript(row).then(response => {
+        this.getList()
+        this.$message({
+          type: 'success',
+          message: response.data
+        })
+      })
+    },
+    handleStoptJob(index) {
+      stopScript({ id: index }).then(response => {
+        this.getList()
+        this.$message({
+          type: 'success',
+          message: response.data
+        })
+      })
+    },
     createData() {
       this.$refs['dataForm'].validate(valid => {
         if (valid) {
           createJob(this.temp).then(() => {
             this.list.unshift(this.temp)
             this.dialogFormVisible = false
+            this.getList()
             this.$message({
               type: 'success',
               message: '任务创建成功!'

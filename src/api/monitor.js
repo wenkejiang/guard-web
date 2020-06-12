@@ -41,7 +41,6 @@ export function deleteJob(jobId) {
 }
 
 export function updateJob(data) {
-  console.log(data.id)
   return request({
     url: '/job/' + data.id + '/',
     method: 'patch',
@@ -52,6 +51,21 @@ export function updateJob(data) {
 export function getProjectInfo(data) {
   return request({
     url: '/projectInfo/',
+    method: 'get',
+    params: data
+  })
+}
+
+export function startScript(data) {
+  return request({
+    url: '/start_script/',
+    method: 'post',
+    data
+  })
+}
+export function stopScript(data) {
+  return request({
+    url: '/stop_script/',
     method: 'get',
     params: data
   })
